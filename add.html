@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Add Book — Library</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <nav>
+    <h1>📚 Library Management System</h1>
+    <a href="index.html">Home</a>
+    <a href="add.html" class="active">Add Book</a>
+    <a href="view.html">View Records</a>
+    <a href="update-delete.html">Update / Delete</a>
+  </nav>
+
+  <div class="container">
+    <h2>Add a New Book</h2>
+    <p class="desc">Fill in the form below to add a book to the library.</p>
+
+    <div class="form-card">
+      <form id="add-form">
+
+        <div class="form-group">
+          <label for="book-title">Book Title</label>
+          <input type="text" id="book-title" name="book-title" placeholder="Enter book title"/>
+        </div>
+
+        <div class="form-group">
+          <label for="author">Author Name</label>
+          <input type="text" id="author" name="author" placeholder="Enter author name"/>
+        </div>
+
+        <div class="form-group">
+          <label for="category">Category</label>
+          <select id="category" name="category">
+            <option value="" disabled selected>Select a category</option>
+            <option value="Fiction">Fiction</option>
+            <option value="Non-Fiction">Non-Fiction</option>
+            <option value="Science">Science</option>
+            <option value="History">History</option>
+            <option value="Philosophy">Philosophy</option>
+            <option value="Biography">Biography</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary">Add Book</button>
+          <button type="reset" class="btn btn-secondary">Clear</button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+</body>
+</html>

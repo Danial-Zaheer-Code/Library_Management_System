@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Update / Delete — Library</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <nav>
+    <h1>📚 Library Management System</h1>
+    <a href="index.html">Home</a>
+    <a href="add.html">Add Book</a>
+    <a href="view.html">View Records</a>
+    <a href="update-delete.html" class="active">Update / Delete</a>
+  </nav>
+
+  <div class="container">
+    <h2>Update / Delete</h2>
+    <p class="desc">Edit or remove a book record from the library.</p>
+
+    <!-- Records table with action buttons -->
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Book Title</th>
+            <th>Author</th>
+            <th>Category</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="ud-tbody">
+          <!-- Rows will be inserted here by JavaScript -->
+          <tr>
+            <td colspan="5" style="text-align:center; color:#aaa; padding:24px;">
+              No records found.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Edit form (hidden by default, shown when Edit is clicked) -->
+    <div id="edit-section" style="display:none; margin-top:32px;">
+      <h2>Edit Book</h2>
+      <p class="desc">Update the details for the selected book.</p>
+
+      <div class="form-card">
+        <form id="edit-form">
+
+          <input type="hidden" id="edit-index"/>
+
+          <div class="form-group">
+            <label for="edit-title">Book Title</label>
+            <input type="text" id="edit-title" name="edit-title" placeholder="Book title"/>
+          </div>
+
+          <div class="form-group">
+            <label for="edit-author">Author Name</label>
+            <input type="text" id="edit-author" name="edit-author" placeholder="Author name"/>
+          </div>
+
+          <div class="form-group">
+            <label for="edit-category">Category</label>
+            <select id="edit-category" name="edit-category">
+              <option value="Fiction">Fiction</option>
+              <option value="Non-Fiction">Non-Fiction</option>
+              <option value="Science">Science</option>
+              <option value="History">History</option>
+              <option value="Philosophy">Philosophy</option>
+              <option value="Biography">Biography</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+            <button type="button" class="btn btn-secondary" id="cancel-edit">Cancel</button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>

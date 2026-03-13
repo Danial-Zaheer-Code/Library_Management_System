@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>View Records — Library</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <nav>
+    <h1>📚 Library Management System</h1>
+    <a href="index.html">Home</a>
+    <a href="add.html">Add Book</a>
+    <a href="view.html" class="active">View Records</a>
+    <a href="update-delete.html">Update / Delete</a>
+  </nav>
+
+  <div class="container">
+    <h2>View Records</h2>
+    <p class="desc">All books currently stored in the library.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Book Title</th>
+            <th>Author</th>
+            <th>Category</th>
+          </tr>
+        </thead>
+        <tbody id="books-tbody">
+          <!-- Rows will be inserted here by JavaScript -->
+          <tr>
+            <td colspan="4" style="text-align:center; color:#aaa; padding:24px;">
+              No records found.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</body>
+</html>
