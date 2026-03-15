@@ -1,4 +1,4 @@
-const API = "http://your-api-url.com"; // Change this to your actual API URL
+const API = "http://localhost/Library_Management_System/PHP";
 
 const form = document.getElementById("add-form");
 
@@ -14,10 +14,15 @@ form.addEventListener("submit", function (e) {
     return;
   }
 
-  fetch(`${API}/books`, {
+  const formData = new FormData()
+
+  formData.append("name",title);
+  formData.append("author",author);
+  formData.append("category",category);
+
+  fetch(`${API}/add_book.php`, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ title, author, category })
+    body: formData
   })
     .then(res => res.json())
     .then(() => {

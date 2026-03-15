@@ -1,12 +1,11 @@
-const API = "http://your-api-url.com"; // Change this to your actual API URL
+const API = "http://localhost/Library_Management_System/PHP";
 
 const tbody      = document.getElementById("ud-tbody");
 const editSection = document.getElementById("edit-section");
 const editForm   = document.getElementById("edit-form");
 
-// ── Load & Render ─────────────────────────────────
 function loadBooks() {
-  fetch(`${API}/books`)
+  fetch(`${API}/get_books.php`)
     .then(res => res.json())
     .then(books => renderTable(books))
     .catch(err => {
@@ -34,22 +33,26 @@ function renderTable(books) {
   tbody.innerHTML = books.map((book, i) => `
     <tr>
       <td>${i + 1}</td>
-      <td>${book.title}</td>
+      <td>${book.name}</td>
       <td>${book.author}</td>
       <td><span class="badge">${book.category}</span></td>
       <td class="td-actions">
-        <button class="btn-edit"   onclick="openEdit('${book.id}', '${book.title}', '${book.author}', '${book.category}')">Edit</button>
+        <button class="btn-edit"   onclick="openEdit('${book.id}', '${book.name}', '${book.author}', '${book.category}')">Edit</button>
         <button class="btn-delete" onclick="deleteBook('${book.id}')">Delete</button>
       </td>
     </tr>
   `).join("");
 }
 
-// ── Delete ────────────────────────────────────────
-function deleteBook(id) {
+window.deleteBook = function(id) {
   if (!confirm("Are you sure you want to delete this book?")) return;
 
-  fetch(`${API}/books/${id}`, { method: "DELETE" })
+  const formData = new FormData();
+  formData.append("id",id);
+  fetch(`${API}/delete_book.php`, { 
+	method: "POST",
+    body: formData 
+})
     .then(res => res.json())
     .then(() => {
       alert("Book deleted.");
@@ -61,8 +64,7 @@ function deleteBook(id) {
     });
 }
 
-// ── Edit ──────────────────────────────────────────
-function openEdit(id, title, author, category) {
+window.openEdit = function(id, title, author, category) {
   document.getElementById("edit-index").value    = id;
   document.getElementById("edit-title").value    = title;
   document.getElementById("edit-author").value   = author;
@@ -85,10 +87,15 @@ editForm.addEventListener("submit", function (e) {
     return;
   }
 
-  fetch(`${API}/books/${id}`, {
-    method: "PUT",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ title, author, category })
+  const formData = new FormData()
+  formData.append("id",id);
+  formData.append("name",title);
+  formData.append("author",author);
+  formData.append("category",category);
+
+  fetch(`${API}/update_book.php`, {
+    method: "POST",
+    body: formData
   })
     .then(res => res.json())
     .then(() => {
@@ -102,11 +109,9 @@ editForm.addEventListener("submit", function (e) {
     });
 });
 
-// ── Cancel Edit ───────────────────────────────────
 document.getElementById("cancel-edit").addEventListener("click", function () {
   editSection.style.display = "none";
   editForm.reset();
 });
 
-// ── Init ──────────────────────────────────────────
 loadBooks();
